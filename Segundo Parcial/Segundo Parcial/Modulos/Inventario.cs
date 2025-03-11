@@ -31,7 +31,7 @@ namespace Segundo_Parcial.Modulos
             }
             Console.WriteLine($"Total del inventario: {total}");
         }
-        public static void ModificarProducto(string nombre, string precio, string categoria)
+        public static void ModificarProducto(string nombre,string nuevoNombre, string precio, string categoria)
         {
             Producto p = Productos.Find(p => p.Nombre == nombre);
             if (p != null)

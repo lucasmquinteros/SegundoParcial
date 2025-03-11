@@ -1,6 +1,7 @@
 ﻿using Segundo_Parcial.Enums;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,10 +31,28 @@ namespace Segundo_Parcial.Modulos
             categoria = (Categoria)valor;
             return categoria;
         }
+        static string PedirNombre(bool esObligatorio)
+        {
+            string nombre = null;
+            bool flag = false;
+            while (!flag)
+            {
+                nombre = Console.ReadLine();
+                if (String.IsNullOrEmpty(nombre) && esObligatorio)
+                {
+                    Console.WriteLine("Ingrese un nombre valido");
+                }
+                else
+                {
+                    flag = true;
+                }
+            }
+            return nombre;
+        }
         static void AgregarProducto()
         {
-            Console.Write("Ingrese el nombre del producto: ");
-            string nombre = Console.ReadLine();
+            Console.WriteLine("Ingrese el nombre del nuevo producto:");
+            string nombre = PedirNombre(true);
             Console.Write("Ingrese el precio del producto: ");
             decimal precio = decimal.Parse(Console.ReadLine());
             Categoria categoria = PedirCategoria();
@@ -51,12 +70,14 @@ namespace Segundo_Parcial.Modulos
         }
         static void ModificarProducto()
         {
-            Console.Write("Ingrese el nombre del producto: ");
-            string nombre = Console.ReadLine();
+            Console.Write("Ingrese el nombre del producto a modificar: ");
+            string nombre = PedirNombre(true);
+            Console.WriteLine("Ingrese el nuevo nombre del producto");
             Console.WriteLine("(Si no quiere cambiar este campo presione enter)");
+            string nuevoNombre = PedirNombre(false);
             Console.WriteLine("Ingrese el precio del producto: ");
-            string precio = Console.ReadLine();
             Console.WriteLine("(Si no quiere cambiar este campo presione enter)");
+            string precio = Console.ReadLine();
             Console.WriteLine("Ingrese la categoria del producto:");
             foreach (Categoria cat in Enum.GetValues(typeof(Categoria)))
             {
@@ -64,7 +85,7 @@ namespace Segundo_Parcial.Modulos
             }
             string valor = Console.ReadLine();
 
-            Inventario.ModificarProducto(nombre, precio, valor);
+            Inventario.ModificarProducto(nombre, nuevoNombre, precio, valor);
         }
         static void EliminarProducto()
         {

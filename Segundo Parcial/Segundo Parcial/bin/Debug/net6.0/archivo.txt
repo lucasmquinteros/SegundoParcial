@@ -1,2 +1,4 @@
 Pan de campo, 300, Pan
 Pastel de vainilla, 10000, Pastel
+Mate, 2500, Pan
+Cafe, 5.000,00, Pan

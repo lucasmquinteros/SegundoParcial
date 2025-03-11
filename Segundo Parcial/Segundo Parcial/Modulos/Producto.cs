@@ -14,7 +14,7 @@ namespace Segundo_Parcial.Modulos
         }
         public override string ToString()
         {
-            return $"{Nombre}, {Precio}, {Categoria}";
+            return $"{Nombre}, {Precio:C}, {Categoria}";
         }
 
         public void CambiarPrecio(decimal precio)
